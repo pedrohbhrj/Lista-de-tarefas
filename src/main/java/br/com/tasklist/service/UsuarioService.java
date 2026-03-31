@@ -94,7 +94,7 @@ public class UsuarioService {
         if(request.nome() != null && !request.nome().equals(usuario.getNome())){
             usuario.setNome(request.nome());
         }
-        if(request.imgUrlPerfil() != null && !request.imgUrlPerfil().equals(usuario.getEmail())){
+        if(request.imgUrlPerfil() != null && !request.imgUrlPerfil().equals(usuario.getImgUrlPerfil())){
             usuario.setImgUrlPerfil(request.imgUrlPerfil());
         }
 
