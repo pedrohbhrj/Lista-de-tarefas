@@ -55,8 +55,8 @@ public class UsuarioController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> deletar(@PathVariable Long id){
-        return ResponseEntity.
-                status(HttpStatus.NO_CONTENT)
+        return ResponseEntity
+                .status(HttpStatus.OK)
                 .body(service.deletar(id));
     }
 
