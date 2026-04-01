@@ -62,7 +62,7 @@ public class UsuarioService {
         usuarioRepository.delete(usuario);
         return new ApiResponse<>(
                 "Usuario deletado com sucesso",
-                HttpStatus.NO_CONTENT.value(),
+                HttpStatus.OK.value(),
                 null);
     }
 
