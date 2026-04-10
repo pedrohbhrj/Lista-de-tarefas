@@ -34,7 +34,6 @@ public class TarefaService {
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new NotFoundException("Usuario não encontrado."));
 
 
-
         Tarefa tarefaCriada = Tarefa
                 .builder()
                 .dataPrazo(request.dataPrazo())
