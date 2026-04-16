@@ -46,57 +46,57 @@ br.com.tasklist
 ├── service/           # Regras de negócio
 └── DataInitializer    # Classe (CommandLineRunner) para popular o banco em ambiente de dev
 ```
-⚙️ Como Executar o Projeto
-Pré-requisitos
-Java 21+
+## ⚙️ Como Executar o Projeto
 
-Maven
+### Pré-requisitos
+* **Java 21+**
+* **Maven**
+* **PostgreSQL** rodando localmente (porta 5432)
 
-PostgreSQL rodando localmente (porta 5432)
+### Passos para Execução
 
-Passos para Execução
-Clone o repositório: git clone(https://github.com/pedrohbhrj/tasklist-api.git)
-Configure o Banco de Dados:
-Crie um banco de dados no PostgreSQL com o nome de tasksv3 (ou um nome de sua preferência).
-Certifique-se de que as credenciais no arquivo src/main/resources/application.properties correspondem à sua instalação local:
-
-Properties
+1. **Clone o repositório:**
+   ```bash
+   git clone [https://github.com/pedrohbhrj/tasklist-api.git](https://github.com/pedrohbhrj/tasklist-api.git)
+   ```
+2. **Configure o Banco de Dados:**
+Crie um banco de dados no PostgreSQL com o nome de tasksv3 (ou um nome de sua preferência). Certifique-se de que as credenciais no arquivo src/main/resources/application.properties correspondem à sua instalação local:
+```Properties
 spring.datasource.username=seu_usuario
 spring.datasource.password=sua_senha
-Nota: Nunca versione senhas reais em repositórios públicos.
-
-Compile o projeto e gere os Mappers:
-Na raiz do projeto, execute o comando Maven para compilar as classes (e gerar as implementações do MapStruct):
-
-Bash
+```
+⚠️ Nota: Nunca versione senhas reais em repositórios públicos.
+3. **Compile o projeto e gere os Mappers:**
+Na raiz do projeto, execute o comando Maven para compilar as classes (isso também vai gerar as implementações automáticas do MapStruct):
+```bash
 mvn clean install
-(Opcional) Execute os Testes Unitários:
+```
+4. **(Opcional) Execute os Testes Unitários:**
 Para rodar a suíte de testes construída com JUnit e Mockito:
-
-Bash
+```bash
 mvn test
-Inicie a aplicação:
-Inicie a aplicação executando a classe TasklistApplication pela sua IDE ou via terminal:
-
-Bash
+```
+5. **Inicie a aplicação:**
+Você pode iniciar executando a classe TasklistApplication pela sua IDE ou via terminal com o comando:
+```bash
 mvn spring-boot:run
-O DataInitializer já irá inserir dados de teste no banco automaticamente na primeira execução.
-
+```
+💡 Dica: O DataInitializer já irá inserir dados de teste no banco automaticamente na sua primeira execução.
 🔗 Principais Endpoints
 A API expõe diversas rotas, todas encapsuladas no padrão ApiResponse<T>. Algumas das principais são:
 
-Usuários (/api/usuario)
+👤 Usuários (/api/usuario)
 POST /api/usuario - Cria um novo usuário.
 
-GET /api/usuario/todos - Retorna lista paginada de usuários.
+GET /api/usuario/todos - Retorna a lista paginada de usuários.
 
-PUT /api/usuario/{id} - Atualiza dados do usuário (merge seletivo).
+PUT /api/usuario/{id} - Atualiza os dados do usuário (merge seletivo).
 
-Tarefas (/api/tarefa)
+📋 Tarefas (/api/tarefa)
 POST /api/tarefa/{usuarioId} - Cria uma tarefa vinculada a um usuário.
 
-GET /api/tarefa/atrasadas - Retorna lista paginada de tarefas cujo prazo expirou.
+GET /api/tarefa/atrasadas - Retorna a lista paginada de tarefas cujo prazo já expirou.
 
 PATCH /api/tarefa/{id}?estaConcluida=true - Atualiza apenas o status de conclusão da tarefa.
 
-GET /api/tarefa/{estaConcluida} - Filtra tarefas por status de conclusão.
+GET /api/tarefa/{estaConcluida} - Filtra as tarefas de acordo com o status de conclusão.
